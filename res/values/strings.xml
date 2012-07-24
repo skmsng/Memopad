@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MemopadActivity!</string>
+    <string name="app_name">メモパッド</string>
+    <string name="memodb_empty">メモが見つかりません</string>
+    <string name="menu_save">保存</string>
+    <string name="menu_open">開く</string>
+    <string name="menu_new">新規作成</string>
+
+</resources>
