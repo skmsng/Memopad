@@ -18,67 +18,67 @@ import android.view.MenuItem;
 public class MemopadActivity extends Activity {
     /** Called when the activity is first created. */
 	
-    @Override	//ƒAƒvƒŠ‚ğ‹N“®‚µ‚½‚Æ‚«
+    @Override	//ã‚¢ãƒ—ãƒªã‚’èµ·å‹•ã—ãŸã¨ã
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);	//main.xml
         
-        //‘O‰ñ‚Ì‰æ–Ê(onStop‚Å•Û‘¶‚µ‚½‰æ–Ê)‚ğ•\¦
-        EditText et = (EditText) this.findViewById(R.id.editText1);						//¡‚ÌViewimain.xml‚ÌeditText1j‚Ìæ“¾
-        SharedPreferences pref = this.getSharedPreferences("MemoPrefs", MODE_PRIVATE);	//SharedPreferencesƒIƒuƒWƒFƒNƒg‚ğ¶¬
-        et.setText(pref.getString("memo", ""));											//"memo"‚Å•Û‘¶‚µ‚½StringŒ^‚Ì’l‚ğæ“¾‚µ‚ÄAEditText‚ÉƒZƒbƒg
-        et.setSelection(pref.getInt("cursor", 0));										//"cursor"‚Å•Û‘¶‚µ‚½intŒ^‚Ì’l‚ğæ“¾‚µ‚ÄAƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğˆÚ“®
+        //å‰å›ã®ç”»é¢(onStopã§ä¿å­˜ã—ãŸç”»é¢)ã‚’è¡¨ç¤º
+        EditText et = (EditText) this.findViewById(R.id.editText1);						//ä»Šã®Viewï¼ˆmain.xmlã®editText1ï¼‰ã®å–å¾—
+        SharedPreferences pref = this.getSharedPreferences("MemoPrefs", MODE_PRIVATE);	//SharedPreferencesã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+        et.setText(pref.getString("memo", ""));											//"memo"ã§ä¿å­˜ã—ãŸStringå‹ã®å€¤ã‚’å–å¾—ã—ã¦ã€EditTextã«ã‚»ãƒƒãƒˆ
+        et.setSelection(pref.getInt("cursor", 0));										//"cursor"ã§ä¿å­˜ã—ãŸintå‹ã®å€¤ã‚’å–å¾—ã—ã¦ã€ã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’ç§»å‹•
     }
     
     /**
-     * SharedPreferencesEEEgetƒƒ\ƒbƒh‚Åƒf[ƒ^‚ğæ“¾‚·‚é
-     * pref.getString('key','key‚É‘Î‚·‚é’l‚ª‚È‚¢ê‡‚Ì’l')
+     * SharedPreferencesãƒ»ãƒ»ãƒ»getãƒ¡ã‚½ãƒƒãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—ã™ã‚‹
+     * pref.getString('key','keyã«å¯¾ã™ã‚‹å€¤ãŒãªã„å ´åˆã®å€¤')
      * 
-     * SharedPreferences.EditorEEEputƒƒ\ƒbƒh‚Åƒf[ƒ^‚ğ•Û‘¶‚·‚é
-     * editor.putString('key','value')EEEvalue‚ÉŠi”[‚·‚é’l
-     * editor.commit()EEEŠi”[‚µ‚½ƒf[ƒ^‚Ì•Û‘¶
+     * SharedPreferences.Editorãƒ»ãƒ»ãƒ»putãƒ¡ã‚½ãƒƒãƒ‰ã§ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹
+     * editor.putString('key','value')ãƒ»ãƒ»ãƒ»valueã«æ ¼ç´ã™ã‚‹å€¤
+     * editor.commit()ãƒ»ãƒ»ãƒ»æ ¼ç´ã—ãŸãƒ‡ãƒ¼ã‚¿ã®ä¿å­˜
      * 
-     * getSharedPreferences("”CˆÓ‚Ì–¼‘O", ƒ‚[ƒh)
+     * getSharedPreferences("ä»»æ„ã®åå‰", ãƒ¢ãƒ¼ãƒ‰)
      */
-    @Override	//ƒz[ƒ€ƒ{ƒ^ƒ“Aˆá‚¤ƒAƒvƒŠ‚ğ‹N“®‚µ‚½‚Æ‚«
+    @Override	//ãƒ›ãƒ¼ãƒ ãƒœã‚¿ãƒ³ã€é•ã†ã‚¢ãƒ—ãƒªã‚’èµ·å‹•ã—ãŸã¨ã
     public void onStop(){
     	super.onStop();
-    	EditText et = (EditText) this.findViewById(R.id.editText1);						//¡‚ÌViewieditText1j‚Ìæ“¾
-    	SharedPreferences pref = this.getSharedPreferences("MemoPrefs", MODE_PRIVATE);	//SharedPreferencesƒIƒuƒWƒFƒNƒg‚ğ¶¬
-    	SharedPreferences.Editor editor = pref.edit();									//EditorƒIƒuƒWƒFƒNƒg‚ğ¶¬
-    	editor.putString("memo", et.getText().toString());								//ƒeƒLƒXƒgƒ{ƒbƒNƒX‚Ì•¶š—ñ‚ğæ“¾‚µA"memo"‚Æ‚¢‚¤–¼‘O‚ÅŠi”[
-    	editor.putInt("cursor", Selection.getSelectionStart(et.getText()));				//ƒeƒLƒXƒgƒ{ƒbƒNƒX‚ÌƒJ[ƒ\ƒ‹ˆÊ’u‚ğæ“¾‚µA"cursor"‚Æ‚¢‚¤–¼‘O‚ÅŠi”[
-    	editor.commit();																//editor‚ÉŠi”[‚³‚ê‚½ƒf[ƒ^‚ğ•Û‘¶
+    	EditText et = (EditText) this.findViewById(R.id.editText1);						//ä»Šã®Viewï¼ˆeditText1ï¼‰ã®å–å¾—
+    	SharedPreferences pref = this.getSharedPreferences("MemoPrefs", MODE_PRIVATE);	//SharedPreferencesã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+    	SharedPreferences.Editor editor = pref.edit();									//Editorã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
+    	editor.putString("memo", et.getText().toString());								//ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®æ–‡å­—åˆ—ã‚’å–å¾—ã—ã€"memo"ã¨ã„ã†åå‰ã§æ ¼ç´
+    	editor.putInt("cursor", Selection.getSelectionStart(et.getText()));				//ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚’å–å¾—ã—ã€"cursor"ã¨ã„ã†åå‰ã§æ ¼ç´
+    	editor.commit();																//editorã«æ ¼ç´ã•ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜
     }
     
     
     /**
-	 * ƒƒjƒ…[ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µ‚½‚Æ‚«
-	 * MenuInflaterEEEXML‚©‚çƒƒjƒ…[‚ğì‚é
+	 * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã¨ã
+	 * MenuInflaterãƒ»ãƒ»ãƒ»XMLã‹ã‚‰ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ä½œã‚‹
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater mi = this.getMenuInflater();		//ƒIƒuƒWƒFƒNƒg‚Ì¶¬
-		mi.inflate(R.menu.menu, menu);					//menu.xml‚Ì“à—e‚Åƒƒjƒ…[€–Ú‚ğì‚é
+		MenuInflater mi = this.getMenuInflater();		//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+		mi.inflate(R.menu.menu, menu);					//menu.xmlã®å†…å®¹ã§ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã‚’ä½œã‚‹
 		return super.onCreateOptionsMenu(menu);
 	}
 	
 	/**
-	 * ƒƒjƒ…[‚©‚ç‘I‘ğ‚³‚ê‚½‚Æ‚«(ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰)
+	 * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰é¸æŠã•ã‚ŒãŸã¨ã(ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©)
 	 */
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {		//ˆø”‚Å‰Ÿ‚³‚ê‚½ƒƒjƒ…[€–Ú”Ô†‚ğó‚¯æ‚é
-		EditText et = (EditText)findViewById(R.id.editText1);	//¡‚ÌViewieditText1j‚Ìæ“¾
+	public boolean onOptionsItemSelected(MenuItem item) {		//å¼•æ•°ã§æŠ¼ã•ã‚ŒãŸãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ç•ªå·ã‚’å—ã‘å–ã‚‹
+		EditText et = (EditText)findViewById(R.id.editText1);	//ä»Šã®Viewï¼ˆeditText1ï¼‰ã®å–å¾—
 		switch(item.getItemId()){								
-		case R.id.menu_save:									//•Û‘¶
+		case R.id.menu_save:									//ä¿å­˜
 			saveMemo();
 			break;
-		case R.id.menu_open:									//ŠJ‚­
-			Intent i = new Intent(this, MemoList.class);		//MemoListƒNƒ‰ƒX‚Ì‰æ–Ê‚ÉƒCƒ“ƒeƒ“ƒg‚ğ“n‚·@–¾¦“IƒCƒ“ƒeƒ“ƒgi©•ª‚ÌƒAƒvƒŠ“à‚ÌƒAƒNƒeƒBƒrƒeƒB‚ğ‹N“®j
-			startActivityForResult(i,0);						//MemoList‚Ì‹N“®A‘æ2ˆø”‚ªonActivityResult()‚Ì‘æ1ˆø”‚Ö“n‚³‚ê‚é
+		case R.id.menu_open:									//é–‹ã
+			Intent i = new Intent(this, MemoList.class);		//MemoListã‚¯ãƒ©ã‚¹ã®ç”»é¢ã«ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆã‚’æ¸¡ã™ã€€æ˜ç¤ºçš„ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆï¼ˆè‡ªåˆ†ã®ã‚¢ãƒ—ãƒªå†…ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£ã‚’èµ·å‹•ï¼‰
+			startActivityForResult(i,0);						//MemoListã®èµ·å‹•ã€ç¬¬2å¼•æ•°ãŒonActivityResult()ã®ç¬¬1å¼•æ•°ã¸æ¸¡ã•ã‚Œã‚‹
 			break;
-		case R.id.menu_new:										//V‹Kì¬
-			et.setText("");										//¡‚Ì‰æ–ÊieditText1j‚É""‚ğƒZƒbƒgiŠJ‚­j
+		case R.id.menu_new:										//æ–°è¦ä½œæˆ
+			et.setText("");										//ä»Šã®ç”»é¢ï¼ˆeditText1ï¼‰ã«""ã‚’ã‚»ãƒƒãƒˆï¼ˆé–‹ãï¼‰
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -86,40 +86,40 @@ public class MemopadActivity extends Activity {
 	
     
     /**
-     * ƒƒjƒ…[‚©‚çu•Û‘¶v‚ğ‰Ÿ‚µ‚½‚Æ‚«
+     * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œä¿å­˜ã€ã‚’æŠ¼ã—ãŸã¨ã
      * 
-     * trim()EEE‹ó”’‚ğæ‚èœ‚¢‚½•¶š—ñ
-     * indexOf(ŒŸõ•¶š)EEEŒŸõ•¶š‚ÌˆÊ’uiŒŸõ•¶š‚ª–³‚¢‚Æ‚«‚Í-1j
-     * substring(num1,num2)EEEnum1”Ô–Ú`num2”Ô–Ú‚Ü‚Å‚Ì•¶š—ñ
-     * Math.min(num1,num2)EEE2‚Â‚Ì’l‚Ì‚¤‚¿¬‚³‚¢•û‚Ì’l
+     * trim()ãƒ»ãƒ»ãƒ»ç©ºç™½ã‚’å–ã‚Šé™¤ã„ãŸæ–‡å­—åˆ—
+     * indexOf(æ¤œç´¢æ–‡å­—)ãƒ»ãƒ»ãƒ»æ¤œç´¢æ–‡å­—ã®ä½ç½®ï¼ˆæ¤œç´¢æ–‡å­—ãŒç„¡ã„ã¨ãã¯-1ï¼‰
+     * substring(num1,num2)ãƒ»ãƒ»ãƒ»num1ç•ªç›®ã€œnum2ç•ªç›®ã¾ã§ã®æ–‡å­—åˆ—
+     * Math.min(num1,num2)ãƒ»ãƒ»ãƒ»2ã¤ã®å€¤ã®ã†ã¡å°ã•ã„æ–¹ã®å€¤
      * 
-     * getDateTimeInstance()EEEƒfƒtƒHƒ‹ƒg‚Ì“ú•t/ƒtƒH[ƒ}ƒbƒg
-     * format()EEEDateŒ^‚ğ“ú•t/•¶š—ñ‚É•ÏŠ·
+     * getDateTimeInstance()ãƒ»ãƒ»ãƒ»ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ—¥ä»˜/æ™‚åˆ»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
+     * format()ãƒ»ãƒ»ãƒ»Dateå‹ã‚’æ—¥ä»˜/æ™‚åˆ»æ–‡å­—åˆ—ã«å¤‰æ›
      * 
-     * getWritableDatabase()EEEDBƒIƒuƒWƒFƒNƒg‚ğ¶¬iSQLiteOpenHelper‚Ìƒƒ\ƒbƒhj
-     * ContentValuesEEE—ñ–¼‚Æ’l‚ğŠi”[‚·‚éiƒe[ƒuƒ‹‚Ì’†gj
-     * db.insertOrThrow("memoDB", null, values)EEE‘æ1ˆø”iƒe[ƒuƒ‹–¼j‚Æ‘æ3ˆø”iƒf[ƒ^j‚ğ“n‚µ‚Äinsert
+     * getWritableDatabase()ãƒ»ãƒ»ãƒ»DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆï¼ˆSQLiteOpenHelperã®ãƒ¡ã‚½ãƒƒãƒ‰ï¼‰
+     * ContentValuesãƒ»ãƒ»ãƒ»åˆ—åã¨å€¤ã‚’æ ¼ç´ã™ã‚‹ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«ã®ä¸­èº«ï¼‰
+     * db.insertOrThrow("memoDB", null, values)ãƒ»ãƒ»ãƒ»ç¬¬1å¼•æ•°ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«åï¼‰ã¨ç¬¬3å¼•æ•°ï¼ˆãƒ‡ãƒ¼ã‚¿ï¼‰ã‚’æ¸¡ã—ã¦insert
      */
 	public void saveMemo(){
-		EditText et = (EditText)this.findViewById(R.id.editText1);				//¡‚ÌViewieditText1j‚Ìæ“¾
+		EditText et = (EditText)this.findViewById(R.id.editText1);				//ä»Šã®Viewï¼ˆeditText1ï¼‰ã®å–å¾—
 		String title;
-		String memo = et.getText().toString();									//ƒeƒLƒXƒgƒ{ƒbƒNƒX‚Ì•¶š—ñ‚ğæ“¾
+		String memo = et.getText().toString();									//ãƒ†ã‚­ã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã®æ–‡å­—åˆ—ã‚’å–å¾—
 		
-		if(memo.trim().length()>0){												//‹ó”’ˆÈŠO‚Ì•¶š‚ª‚ ‚éê‡
-			if(memo.indexOf("\n") == -1){										//‰üs‚ª‚È‚¢ê‡
-				title = memo.substring(0, Math.min(memo.length(), 20));			//Å‰‚Ì20•¶š‚ğƒ^ƒCƒgƒ‹
-			}else{																//‰üs‚ª‚ ‚éê‡
-				title = memo.substring(0, Math.min(memo.indexOf("\n"),20));		//Å‰‚Ì‰üs‚Ü‚Å‚ğƒ^ƒCƒgƒ‹
+		if(memo.trim().length()>0){												//ç©ºç™½ä»¥å¤–ã®æ–‡å­—ãŒã‚ã‚‹å ´åˆ
+			if(memo.indexOf("\n") == -1){										//æ”¹è¡ŒãŒãªã„å ´åˆ
+				title = memo.substring(0, Math.min(memo.length(), 20));			//æœ€åˆã®20æ–‡å­—ã‚’ã‚¿ã‚¤ãƒˆãƒ«
+			}else{																//æ”¹è¡ŒãŒã‚ã‚‹å ´åˆ
+				title = memo.substring(0, Math.min(memo.indexOf("\n"),20));		//æœ€åˆã®æ”¹è¡Œã¾ã§ã‚’ã‚¿ã‚¤ãƒˆãƒ«
 			}
-			String ts = DateFormat.getDateTimeInstance().format(new Date());	//•Û‘¶“ú‚ğ•¶š—ñ‚ÅŠi”[
+			String ts = DateFormat.getDateTimeInstance().format(new Date());	//ä¿å­˜æ—¥æ™‚ã‚’æ–‡å­—åˆ—ã§æ ¼ç´
 			
-			MemoDBHelper memos = new MemoDBHelper(this);		//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬€”õ
-			SQLiteDatabase db = memos.getWritableDatabase();	//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬
-			ContentValues values = new ContentValues();			//ƒe[ƒuƒ‹‚ÌƒIƒuƒWƒFƒNƒg‚Ì¶¬
-			values.put("title", title + "\n" + ts);				//—ñ–¼=title@ƒf[ƒ^=ƒ^ƒCƒgƒ‹+•Û‘¶“ú
-			values.put("memo", memo);							//—ñ–¼=memo ƒf[ƒ^=ƒƒ‚“à—e
-			db.insertOrThrow("memoDB", null, values);			//DB‚É“o˜^iinsertj
-			memos.close();										//ƒIƒuƒWƒFƒNƒg‚ğ•Â‚¶‚é
+			MemoDBHelper memos = new MemoDBHelper(this);		//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆæº–å‚™
+			SQLiteDatabase db = memos.getWritableDatabase();	//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+			ContentValues values = new ContentValues();			//ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+			values.put("title", title + "\n" + ts);				//åˆ—å=titleã€€ãƒ‡ãƒ¼ã‚¿=ã‚¿ã‚¤ãƒˆãƒ«+ä¿å­˜æ—¥æ™‚
+			values.put("memo", memo);							//åˆ—å=memo ãƒ‡ãƒ¼ã‚¿=ãƒ¡ãƒ¢å†…å®¹
+			db.insertOrThrow("memoDB", null, values);			//DBã«ç™»éŒ²ï¼ˆinsertï¼‰
+			memos.close();										//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‰ã˜ã‚‹
 		}
 	}
 
@@ -127,9 +127,9 @@ public class MemopadActivity extends Activity {
 	
 	
 	/**
-	 * ƒƒjƒ…[‚©‚çuŠJ‚­v‚ğ‰Ÿ‚µAMemoListƒAƒNƒeƒBƒrƒeƒB‚Ìˆ—‚ªI‚í‚Á‚½Œã
+	 * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œé–‹ãã€ã‚’æŠ¼ã—ã€MemoListã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£ã®å‡¦ç†ãŒçµ‚ã‚ã£ãŸå¾Œ
 	 * 
-	 * ‘I‘ğ‚³‚ê‚½ƒƒ‚‚ğŠJ‚­
+	 * é¸æŠã•ã‚ŒãŸãƒ¡ãƒ¢ã‚’é–‹ã
 	 */
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -137,7 +137,7 @@ public class MemopadActivity extends Activity {
 		if(resultCode == RESULT_OK){
 			EditText et = (EditText)findViewById(R.id.editText1);
 			
-			switch(requestCode){							//Šg’£‹@”\
+			switch(requestCode){							//æ‹¡å¼µæ©Ÿèƒ½
 			case 0:
 				et.setText(data.getStringExtra("text"));
 				break;

@@ -11,11 +11,11 @@ import android.widget.SimpleCursorAdapter;
 import android.content.Intent;
 
 public class MemoList extends ListActivity {
-	public static final String[] cols = {"title", "memo", android.provider.BaseColumns._ID };	//SQL‚Ì—ñ–¼
+	public static final String[] cols = {"title", "memo", android.provider.BaseColumns._ID };	//SQLã®åˆ—å
 	public MemoDBHelper memos;
 	
 	/**
-	 * ƒƒjƒ…[‚ÌuŠJ‚­v‚ð‰Ÿ‚µ‚½‚Æ‚«
+	 * ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ã€Œé–‹ãã€ã‚’æŠ¼ã—ãŸã¨ã
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,36 +23,36 @@ public class MemoList extends ListActivity {
 		this.setContentView(R.layout.memolist);	//memolist.xml
 		
 		
-		this.showMemos(this.getMemos());	//select•¶‚Åƒƒ‚ƒŠƒXƒg‚ðŽæ“¾‚µA•\Ž¦ƒƒ\ƒbƒh‚É“n‚·
+		this.showMemos(this.getMemos());	//selectæ–‡ã§ãƒ¡ãƒ¢ãƒªã‚¹ãƒˆã‚’å–å¾—ã—ã€è¡¨ç¤ºãƒ¡ã‚½ãƒƒãƒ‰ã«æ¸¡ã™
 		
-		ListView lv = (ListView)this.findViewById(android.R.id.list);	//¡‚ÌViewimemolist.xml‚Ìlistj‚ÌŽæ“¾
-		this.registerForContextMenu(lv);								//ListViewƒIƒuƒWƒFƒNƒg‚ÉƒRƒ“ƒeƒLƒXƒgƒƒjƒ…[‚ð“o˜^HHH
+		ListView lv = (ListView)this.findViewById(android.R.id.list);	//ä»Šã®Viewï¼ˆmemolist.xmlã®listï¼‰ã®å–å¾—
+		this.registerForContextMenu(lv);								//ListViewã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’ç™»éŒ²ï¼Ÿï¼Ÿï¼Ÿ
 	}
 
 
 	/**
-	 * select•¶
+	 * selectæ–‡
 	 * 
-	 * db.query("memoDB", MemoList.cols, null, null, null, null, null)EEE ‘æ1ˆø”iƒe[ƒuƒ‹–¼jA‘æ2ˆø”i—ñ–¼jA‘æ3ˆÈ~iðŒHj
-	 * startManagingCursor()EEE ŒŸõŒ‹‰Ê(cursor)‚ðŽ©“®“I‚ÉƒŠƒ\[ƒX‰ð•ú‚µ‚Ä‚­‚ê‚éAndroid‚Ì•Ö—˜‚Èƒƒ\ƒbƒh
+	 * db.query("memoDB", MemoList.cols, null, null, null, null, null)ãƒ»ãƒ»ãƒ» ç¬¬1å¼•æ•°ï¼ˆãƒ†ãƒ¼ãƒ–ãƒ«åï¼‰ã€ç¬¬2å¼•æ•°ï¼ˆåˆ—åï¼‰ã€ç¬¬3ä»¥é™ï¼ˆæ¡ä»¶ï¼Ÿï¼‰
+	 * startManagingCursor()ãƒ»ãƒ»ãƒ» æ¤œç´¢çµæžœ(cursor)ã‚’è‡ªå‹•çš„ã«ãƒªã‚½ãƒ¼ã‚¹è§£æ”¾ã—ã¦ãã‚Œã‚‹Androidã®ä¾¿åˆ©ãªãƒ¡ã‚½ãƒƒãƒ‰
 	 */
 	public Cursor getMemos() {
-		this.memos = new MemoDBHelper(this);				//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬€”õ
-		SQLiteDatabase db = memos.getReadableDatabase();	//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬
-		Cursor cursor = db.query("memoDB", MemoList.cols, null, null, null, null, null);	//DBŒŸõiselectj
-		this.startManagingCursor(cursor);					//‚Æ‚è‚ ‚¦‚¸‘‚¢‚Ä‚¨‚­
+		this.memos = new MemoDBHelper(this);				//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆæº–å‚™
+		SQLiteDatabase db = memos.getReadableDatabase();	//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+		Cursor cursor = db.query("memoDB", MemoList.cols, null, null, null, null, null);	//DBæ¤œç´¢ï¼ˆselectï¼‰
+		this.startManagingCursor(cursor);					//ã¨ã‚Šã‚ãˆãšæ›¸ã„ã¦ãŠã
 		return cursor;
 	}
 	
 	/**
-	 * ƒƒ‚ƒŠƒXƒg‚Ì•\Ž¦
+	 * ãƒ¡ãƒ¢ãƒªã‚¹ãƒˆã®è¡¨ç¤º
 	 * 
-	 * fromEEEƒŠƒXƒg‚É•\Ž¦‚·‚éƒf[ƒ^ƒx[ƒX‚ÌƒtƒB[ƒ‹ƒh–¼
-	 * toEEE•\Ž¦‚·‚éƒrƒ…[‚ÌƒŠƒ\[ƒXID
-	 * android.R.layout.simple_list_item_1EEE•W€ƒŒƒCƒAƒEƒg
+	 * fromãƒ»ãƒ»ãƒ»ãƒªã‚¹ãƒˆã«è¡¨ç¤ºã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰å
+	 * toãƒ»ãƒ»ãƒ»è¡¨ç¤ºã™ã‚‹ãƒ“ãƒ¥ãƒ¼ã®ãƒªã‚½ãƒ¼ã‚¹ID
+	 * android.R.layout.simple_list_item_1ãƒ»ãƒ»ãƒ»æ¨™æº–ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 	 */
 	public void showMemos(Cursor cursor) {
-		if(cursor != null){							//ŒŸõŒ‹‰Ê‚ª‚ ‚éê‡
+		if(cursor != null){							//æ¤œç´¢çµæžœãŒã‚ã‚‹å ´åˆ
 			String[] from = {"title"};				
 			int[] to = {android.R.id.text1};
 			SimpleCursorAdapter adapter = new SimpleCursorAdapter(
@@ -60,32 +60,32 @@ public class MemoList extends ListActivity {
 					cursor, from, to);
 			setListAdapter(adapter);
 		}
-		memos.close();								//select•¶‚ÌƒIƒuƒWƒFƒNƒg‚ð•Â‚¶‚é
+		memos.close();								//selectæ–‡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‰ã˜ã‚‹
 	}
 	
 	
 	
 	/**
-	 * ƒŠƒXƒg(ã‹Lselect•¶‚ÌŒ‹‰Ê)‚©‚ç‚P‚Â‚Ìƒƒ‚‚ð‘I‘ð‚µ‚½‚Æ‚«
-	 * DB‚©‚çƒƒ‚“à—e‚ðŽæ‚èo‚µAƒƒCƒ“ƒAƒNƒeƒBƒrƒeƒBiMemopadActivityj‚Éƒf[ƒ^‚ð“n‚µ‚ÄA‚±‚ÌƒAƒNƒeƒBƒrƒeƒBiMemoListj‚ðI—¹‚·‚éB
+	 * ãƒªã‚¹ãƒˆ(ä¸Šè¨˜selectæ–‡ã®çµæžœ)ã‹ã‚‰ï¼‘ã¤ã®ãƒ¡ãƒ¢ã‚’é¸æŠžã—ãŸã¨ã
+	 * DBã‹ã‚‰ãƒ¡ãƒ¢å†…å®¹ã‚’å–ã‚Šå‡ºã—ã€ãƒ¡ã‚¤ãƒ³ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£ï¼ˆMemopadActivityï¼‰ã«ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã—ã¦ã€ã“ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£ï¼ˆMemoListï¼‰ã‚’çµ‚äº†ã™ã‚‹ã€‚
 	 * 
-	 * select•¶iidðŒŒŸõj
+	 * selectæ–‡ï¼ˆidæ¡ä»¶æ¤œç´¢ï¼‰
 	 */
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);				//
-		this.memos = new MemoDBHelper(this);					//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬€”õ
-		SQLiteDatabase db = this.memos.getWritableDatabase();	//DBƒIƒuƒWƒFƒNƒg‚Ì¶¬
-		Cursor cursor = db.query("memoDB", MemoList.cols, "_ID="+String.valueOf(id), null, null, null, null);	//DBŒŸõiselectj
-		this.startManagingCursor(cursor);						//‚Æ‚è‚ ‚¦‚¸‘‚¢‚Ä‚¨‚­
+		this.memos = new MemoDBHelper(this);					//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆæº–å‚™
+		SQLiteDatabase db = this.memos.getWritableDatabase();	//DBã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç”Ÿæˆ
+		Cursor cursor = db.query("memoDB", MemoList.cols, "_ID="+String.valueOf(id), null, null, null, null);	//DBæ¤œç´¢ï¼ˆselectï¼‰
+		this.startManagingCursor(cursor);						//ã¨ã‚Šã‚ãˆãšæ›¸ã„ã¦ãŠã
 		Integer idx = cursor.getColumnIndex("memo");
 		cursor.moveToFirst();
-		Intent i = new Intent();	//ˆÃ–Ù“IƒCƒ“ƒeƒ“ƒg
+		Intent i = new Intent();	//æš—é»™çš„ã‚¤ãƒ³ãƒ†ãƒ³ãƒˆ
 		
 		i.putExtra("text", cursor.getString(idx));
 		this.setResult(RESULT_OK, i);
-		memos.close();									//select•¶‚ÌƒIƒuƒWƒFƒNƒg‚ð•Â‚¶‚é
-		this.finish();	//Œ»Ý‚ÌƒAƒNƒeƒBƒrƒeƒBiMemoListjI—¹ --> MemopadActivity.onActivityResult()
+		memos.close();									//selectæ–‡ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‰ã˜ã‚‹
+		this.finish();	//ç¾åœ¨ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ“ãƒ†ã‚£ï¼ˆMemoListï¼‰çµ‚äº† --> MemopadActivity.onActivityResult()
 	}
 
 
